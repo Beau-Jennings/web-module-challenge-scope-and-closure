@@ -28,9 +28,10 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
-  
+  Answer: counter1 uses a local variable, whereas counter2 uses a global variable.
+
   2. Which of the two uses a closure? How can you tell?
-  
+  Answer: 
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
 */
@@ -80,19 +81,35 @@ For example: invoking finalScore(inning, 9) might return this object:
 }
 */ 
 
-function finalScore(/*code Here*/){
+function finalScore(inningCB, num){
+  const finalScore = [];
+  let homePoint = 0;
+  let awayPoint = 0;
+  
+  for(let i = 0; i < num; i++){
+      const currentPoint = inningCB(num)
+      homePoint = homePoint + finalScore.Home
+      awayPoint = awayPoint + finalScore.Away
+      finalScore.push(`Inning ${num} and the score is: Home ${finalScore.Home} - Away ${finalScore.Away}.`)
+  }
 
-  /*Code Here*/
-
+  return {
+      Home:inningCB(),
+      Away:inningCB()
+  }
 }
+console.log(finalScore(inning,9));
 
 /* Task 4: 
 // create a function called getInningScore 
 // the function should take the inning function as an argument 
 // it should return an object with with a score for home and a score for away that that populates from invoking the inning callback. */
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
+function getInningScore(inning) {
+  return{
+    Home: inning(),
+    Away: inning()
+  }
 }
 /* Task 5: scoreboard()
 Use the scoreboard function below to do the following:
